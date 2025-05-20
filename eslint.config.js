@@ -13,18 +13,6 @@ export default antfu({
         'n/prefer-global/process': ['error', 'always'],
         'react-hooks/exhaustive-deps': 'off',
         'style/jsx-one-expression-per-line': ['warn', { allow: 'single-line' }],
-        // 'import-x/order': [
-        //     'error',
-        //     {
-        //         pathGroups: [
-        //             {
-        //                 pattern: '@/**',
-        //                 group: 'external',
-        //                 position: 'after',
-        //             },
-        //         ],
-        //     },
-        // ],
     },
     ignores: [
         '**/umd',

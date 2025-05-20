@@ -53,6 +53,11 @@ const formScheme: ISchema = {
             'type': 'array',
             'default': ['name', '18', 'male'],
             'decorator': 'FormItem',
+            'decorator-props': {
+                style: {
+                    marginBottom: 0,
+                },
+            },
             'title': '元组',
             'component-props': {
                 direction: 'vertical',
