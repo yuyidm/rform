@@ -1,0 +1,45 @@
+{
+    "name": "rform",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
+    },
+    "peerDependencies": {
+        "antd": "^5.25.1",
+        "classnames": "^2.5.1",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "dependencies": {
+        "@formily/path": "2.3.7",
+        "immer": "^10.1.1",
+        "nanoid": "^5.1.5",
+        "zustand": "^5.0.4"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "^4.13.0",
+        "@eslint-react/eslint-plugin": "^1.49.0",
+        "@eslint/js": "^9.25.0",
+        "@types/react": "^18.3.21",
+        "@types/react-dom": "^18.3.7",
+        "@vitejs/plugin-react-swc": "^3.9.0",
+        "@welldone-software/why-did-you-render": "^8",
+        "ahooks": "^3.8.4",
+        "dayjs": "^1.11.13",
+        "eslint": "^9.25.0",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.19",
+        "globals": "^16.0.0",
+        "less": "^4.3.0",
+        "react-scan": "^0.3.3",
+        "rollup-plugin-visualizer": "^5.14.0",
+        "typescript": "~5.8.3",
+        "typescript-eslint": "^8.30.1",
+        "vite": "^6.3.5"
+    }
+}
