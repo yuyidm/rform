@@ -1,43 +1,60 @@
-.formItem {
-  margin-bottom: 24px;
+.form-item {
+  font-size: 14px;
+
+  &[data-type="object"],
+  &[data-type="array"] {
+    margin-bottom: -22px;
+  }
 }
 
-.label {
-  text-align: right;
-  padding-right: 8px;
-  line-height: 32px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.85);
+.label-col {
+  label {
+    font-weight: 500;
+    line-height: 32px;
+
+    &.required::before {
+      content: '*';
+      color: red;
+      margin-right: 4px;
+    }
+  }
 }
 
-.required {
-  color: #ff4d4f;
-  margin-right: 4px;
+.wrapper-col {
+  .control {
+    display: inline-block;
+    line-height: 32px;
+  }
+
+  .help {
+    min-height: 22px; // 保证出现/消失不抖动
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .extra {
+    margin-top: 4px;
+    color: #8c8c8c;
+    font-size: 12px;
+  }
+
+  .success {
+    color: #52c41a;
+  }
+
+  .warning {
+    color: #faad14;
+  }
+
+  .error {
+    color: #ff4d4f;
+  }
+
+  .validating {
+    color: #1890ff;
+  }
 }
 
-.wrapper {
-  flex: 1;
+:global(.ant-space[type='void']) {
+  display: flex;
 }
-
-.control {
-  position: relative;
-  line-height: 1.5715;
-}
-
-.controlContent {
-  min-height: 32px;
-  line-height: 32px;
-}
-
-.help {
-  margin-top: 4px;
-  font-size: 12px;
-  color: #ff4d4f;
-}
-
-.extra {
-  margin-top: 4px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.45);
-}
-

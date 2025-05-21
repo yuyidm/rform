@@ -2,7 +2,9 @@ import type { Path } from '@formily/path'
 import type { ISchema } from '@/interfaces'
 import { nanoid } from 'nanoid'
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useShallow } from 'zustand/shallow'
 import { emptyObjects } from '@/const/emptyObjects'
+import { useForceUpdate } from './useForceUpdate'
 import { useForm } from './useForm'
 import { useMemoizedFn } from './useMemoizedFn'
 
@@ -11,10 +13,12 @@ export type ArrayFieldApi = ReturnType<typeof useArrayField>['api']
 export function useArrayField<T = any>(path: Path, schema: ISchema) {
     const useBoundStore = useForm()
     const setFieldState = useBoundStore(s => s.setFieldValue)
+    const forceUpdate = useForceUpdate()
+
     const defaultValue = schema.default ?? emptyObjects.arr
     const items = schema.items
     const isTuple = Array.isArray(items) && items.length > 0
-    const [tupleSchema, setTupleSchema] = useState<ISchema[]>(isTuple ? [...items] : [])
+    const tupleSchemaRef = useRef(isTuple ? [...items] : undefined)
 
     const length = useBoundStore((s) => {
         if (isTuple) {
@@ -33,6 +37,7 @@ export function useArrayField<T = any>(path: Path, schema: ISchema) {
 
     const update = useMemoizedFn((newList: T[]) => {
         setFieldState(path, newList)
+        forceUpdate()
     })
 
     const getList = useMemoizedFn(() => [...path.getIn(useBoundStore.getState().values) ?? []])
@@ -59,20 +64,20 @@ export function useArrayField<T = any>(path: Path, schema: ISchema) {
 
     const move = useMemoizedFn((from: number, to: number) => {
         const list = getList()
+
         const newKeys = keyRef.current
         const [item] = list.splice(from, 1)
         const [key] = newKeys.splice(from, 1)
 
         list.splice(to, 0, item)
         newKeys.splice(to, 0, key)
+
         update(list)
 
         if (isTuple) {
-            setTupleSchema((tupleSchema) => {
-                const [_form] = tupleSchema.splice(from, 1)
-                tupleSchema.splice(to, 0, _form)
-                return [...tupleSchema]
-            })
+            const newTupleSchema = tupleSchemaRef.current!
+            const [schema] = newTupleSchema.splice(from, 1)
+            newTupleSchema.splice(to, 0, schema)
         }
     })
 
@@ -99,7 +104,7 @@ export function useArrayField<T = any>(path: Path, schema: ISchema) {
 
     const getItemSchema = useMemoizedFn((index: number): ISchema => {
         if (isTuple) {
-            return tupleSchema[index]
+            return tupleSchemaRef.current![index]
         }
         return items as ISchema
     })

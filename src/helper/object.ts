@@ -6,8 +6,8 @@ export function isNil(obj: any) {
 }
 
 export function isEmpty(obj: any) {
-    if (typeof obj === 'object') {
-        return Object.keys(obj).length === 0
+    if (isNil(obj)) {
+        return true
     }
     if (typeof obj === 'string') {
         return obj.length === 0
@@ -15,7 +15,8 @@ export function isEmpty(obj: any) {
     if (Array.isArray(obj)) {
         return obj.length === 0
     }
-    if (isNil(obj)) {
-        return true
+    if (typeof obj === 'object') {
+        return Object.keys(obj).length === 0
     }
+    return true
 }

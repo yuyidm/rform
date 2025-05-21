@@ -62,17 +62,13 @@ export function resolveSchema(
     const visible = resolveValue(schema.visible ?? true, scope)
 
     const decoratorProps = {
+        type: schema.type,
         label: title,
-        help: scope.error || '',
-        description,
         required,
-        disabled,
-        defaultValue: schema.default,
         ...resolveValue(schema['decorator-props'] ?? emptyObjects.obj, scope),
     }
 
     const componentProps = {
-        disabled,
         ...resolveValue(schema['component-props'] ?? emptyObjects.obj, scope),
     }
 

@@ -26,5 +26,8 @@
         "skipLibCheck": true,
         "noUncheckedSideEffectImports": true
     },
-    "include": ["src", "examples/main.tsx", "examples/App.tsx", "examples/vite-env.d.ts"]
+    "include": [
+        "src",
+        "examples"
+    ]
 }

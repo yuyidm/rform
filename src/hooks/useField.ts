@@ -2,6 +2,7 @@ import type { ISchema } from '@/interfaces'
 import { Path } from '@formily/path'
 import { useMemo } from 'react'
 import { useShallow } from 'zustand/shallow'
+import { isEmpty } from '@/helper/object'
 import { resolveSchema } from '@/helper/resolveSchema'
 import { useForm } from './useForm'
 import { useMemoizedFn } from './useMemoizedFn'
@@ -38,7 +39,10 @@ export function useField(path: Path, schema: ISchema) {
         getErrors,
     }), [])
 
-    const resolved = resolveSchema(schema, { value, deps, error, components, ...scope })
+    const resolved = resolveSchema(
+        schema,
+        { value, deps, error, components, ...scope },
+    )
     const onChange = useMemoizedFn((val: any) => {
         const resolvedValue = resolved.normalize(val)
         setFieldValue(path, resolvedValue)
@@ -49,6 +53,7 @@ export function useField(path: Path, schema: ISchema) {
 
     return {
         value: resolved.transform(value),
+        status: !isEmpty(error) ? 'error' : undefined,
         error,
         defaultValue,
         deps,

@@ -21,21 +21,29 @@ const Field: React.FC<FieldProps> = ({
     const {
         value,
         onChange,
-        title,
-        required,
         decorator: Decorator,
         decoratorProps,
         component: Component,
         componentProps,
+        status,
+        error,
+        description,
+        disabled,
     } = useField(path, schema)
 
     return (
         <Decorator
+            htmlFor={path.toString()}
+            validateStatus={status}
+            help={error}
+            extra={description}
+            disabled={disabled}
             {...decoratorProps}
-            label={title}
-            required={required}
         >
             <Component
+                id={path.toString()}
+                disabled={disabled}
+                status={status}
                 {...componentProps}
                 value={value}
                 onChange={onChange}
