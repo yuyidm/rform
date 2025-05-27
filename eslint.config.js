@@ -15,7 +15,8 @@ export default antfu({
         'style/jsx-one-expression-per-line': ['warn', { allow: 'single-line' }],
     },
     ignores: [
-        '**/umd',
-        '**/es',
+        'node_modules',
+        'es',
+        'umd',
     ],
 })

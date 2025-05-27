@@ -8,7 +8,6 @@ import './index.css'
 async function main() {
     scan({
         enabled: true,
-
     })
     createRoot(document.getElementById('root')!).render(
         <React.StrictMode>

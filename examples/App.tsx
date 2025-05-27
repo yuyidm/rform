@@ -1,9 +1,10 @@
+import { createFormStore, Form } from '@r-form/core'
+import { ArrayItems, FormItem } from '@r-form/widget'
 import { Button, DatePicker, Input, InputNumber, Radio, Space } from 'antd'
-import { createFormStore, Form } from '@/index'
-import { ArrayItems, FormItem } from '@/widgets'
-
+import React from 'react'
 import { formScheme } from './formScheme'
 import './App.css'
+import '@r-form/widget/es/index.css'
 
 function App() {
     const formStore = createFormStore({
@@ -19,6 +20,7 @@ function App() {
             Radio,
             'Radio.Group': Radio.Group,
             Input,
+            'Input.TextArea': Input.TextArea,
             DatePicker,
             'DatePicker.RangePicker': DatePicker.RangePicker,
             Space,
@@ -32,12 +34,12 @@ function App() {
                 values
             </Button>
 
-            <Button onClick={() => console.log(formStore.getState().fields)}>
-                fields
-            </Button>
-
             <Button onClick={() => console.log(formStore.getState())}>
                 state
+            </Button>
+
+            <Button onClick={() => formStore.getState().submit().then(console.log)}>
+                submit
             </Button>
 
             <Form form={formStore} />
