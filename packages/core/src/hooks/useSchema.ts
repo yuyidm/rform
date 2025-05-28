@@ -1,10 +1,10 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from '../helper/path'
 import type { ISchema } from '../interfaces'
 import { useEffect } from 'react'
 import { useField } from './useField'
 import { useForm } from './useForm'
 
-export function useSchema(path: Path, schema: ISchema) {
+export function useSchema(path: FromPath, schema: ISchema) {
     const useBoundStore = useForm()
     const { validate, scope } = useField(path, schema)
 

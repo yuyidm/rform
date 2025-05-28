@@ -1,4 +1,4 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from '../../helper/path'
 import type { ISchema } from '../../interfaces'
 import { memo } from 'react'
 import { compareByPath } from '../../helper/compareByPath'
@@ -9,7 +9,7 @@ import SchemaField from '../SchemaField'
 
 export interface ObjectFieldProps {
     schema: ISchema
-    path: Path
+    path: FromPath
 }
 
 const ObjectField: React.FC<ObjectFieldProps> = ({

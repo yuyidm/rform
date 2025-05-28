@@ -1,4 +1,4 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from '../../helper/path'
 import type { ISchema } from '../../interfaces'
 import classNames from 'classnames'
 import { memo } from 'react'
@@ -9,7 +9,7 @@ import { useSchema } from '../../hooks/useSchema'
 
 export interface FieldProps {
     schema: ISchema
-    path: Path
+    path: FromPath
 }
 
 const Field: React.FC<FieldProps> = ({

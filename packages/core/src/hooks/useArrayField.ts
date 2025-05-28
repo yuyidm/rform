@@ -1,4 +1,4 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from '../helper/path'
 import type { ISchema } from '../interfaces'
 import { nanoid } from 'nanoid/non-secure'
 import { useEffect, useMemo, useRef } from 'react'
@@ -17,7 +17,7 @@ export interface ArrayFieldApi<T = any> {
     getItemSchema: (index: number) => ISchema
 }
 
-export function useArrayField<T = any>(path: Path, schema: ISchema) {
+export function useArrayField<T = any>(path: FromPath, schema: ISchema) {
     const useBoundStore = useForm()
     const setFieldState = useBoundStore(s => s.setFieldValue)
     const getFieldValue = useBoundStore(s => s.getFieldValue)

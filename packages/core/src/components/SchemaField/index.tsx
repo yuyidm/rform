@@ -1,7 +1,8 @@
+import type { FromPath } from '../../helper/path'
 import type { ISchema } from '../../interfaces'
-import { Path } from '@formily/path'
 import React, { memo } from 'react'
 import { compareByPath } from '../../helper/compareByPath'
+import { Path } from '../../helper/path'
 import ArrayField from '../ArrayField'
 import Field from '../Field'
 import ObjectField from '../ObjectField'
@@ -9,7 +10,7 @@ import VoidField from '../VoidField'
 
 interface SchemaFieldProps {
     schema: ISchema
-    path?: Path
+    path?: FromPath
 }
 
 const defaultProps = {

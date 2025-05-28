@@ -1,12 +1,12 @@
 import commonjs from '@rollup/plugin-commonjs'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import terser from '@rollup/plugin-terser'
-import dts from 'rollup-plugin-dts'
+import { dts } from 'rollup-plugin-dts'
 import peerDepsExternalPlugin from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 import swc from 'rollup-plugin-swc3'
 
-const isProd = process.env.NODE_ENV !== 'production'
+const isProd = process.env.NODE_ENV === 'production'
 
 /** @type {import("rollup").RollupOptions} */
 export default [
@@ -19,11 +19,10 @@ export default [
                 format: 'es',
             },
         ],
-        jsx: 'react-jsx',
         plugins: [
             peerDepsExternalPlugin(),
             nodeResolve({
-                extensions: ['.ts', '.tsx'],
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
             }),
             commonjs(),
             postcss({
@@ -36,11 +35,10 @@ export default [
                     },
                 },
                 modules: {
-                    generateScopedName: isProd ? '[hash:base64:5' : '[name]__[local]',
+                    generateScopedName: isProd ? '[hash:base64:5]' : '[name]__[local]',
                 },
             }),
             swc({
-                tsconfig: 'tsconfig.json',
                 jsc: {
                     parser: {
                         syntax: 'typescript',

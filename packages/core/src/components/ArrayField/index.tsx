@@ -1,4 +1,4 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from '../../helper/path'
 import type { ISchema } from '../../interfaces'
 import { memo, useMemo } from 'react'
 import { ArrayItemIndexContext, ArrayItemsContext } from '../../const/context'
@@ -11,7 +11,7 @@ import SchemaField from '../SchemaField'
 
 interface ArrayFieldProps {
     schema: ISchema
-    path: Path
+    path: FromPath
 }
 
 const ArrayField: React.FC<ArrayFieldProps> = ({

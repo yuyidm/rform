@@ -1,10 +1,10 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from '../helper/path'
 import type { ISchema } from '../interfaces'
 import { useEffect } from 'react'
 import { isNil } from '../helper/object'
 import { useForm } from './useForm'
 
-export function useDefaultValue(path: Path, schema: ISchema) {
+export function useDefaultValue(path: FromPath, schema: ISchema) {
     const useBoundStore = useForm()
     const getFieldTouched = useBoundStore(s => s.getFieldTouched)
     const getFieldValue = useBoundStore(s => s.getFieldValue)

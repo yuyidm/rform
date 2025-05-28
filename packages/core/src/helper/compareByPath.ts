@@ -1,7 +1,7 @@
-import type { Path } from '@formily/path'
+import type { FromPath } from './path'
 
 interface Props {
-    path?: Path
+    path?: FromPath
     [key: string]: any
 }
 

@@ -1,13 +1,14 @@
+import type { FromPath } from '../helper/path'
 import type { ISchema } from '../interfaces'
-import { Path } from '@formily/path'
 import { useMemo } from 'react'
 import { useShallow } from 'zustand/shallow'
 import { isEmpty } from '../helper/object'
+import { Path } from '../helper/path'
 import { resolveSchema } from '../helper/resolveSchema'
 import { useForm } from './useForm'
 import { useMemoizedFn } from './useMemoizedFn'
 
-export function useField(path: Path, schema: ISchema) {
+export function useField(path: FromPath, schema: ISchema) {
     const { deps: _deps = [], default: defaultValue } = schema
     const useBoundStore = useForm()
     const isWrapper = ['array', 'object', 'void'].includes(schema.type)

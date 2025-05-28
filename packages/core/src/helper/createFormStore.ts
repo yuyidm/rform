@@ -1,5 +1,5 @@
-import type { Path } from '@formily/path'
 import type { ISchema } from '../interfaces'
+import type { FromPath } from './path'
 import { produce } from 'immer'
 import { create } from 'zustand'
 import { map } from './async'
@@ -14,16 +14,16 @@ export interface State {
     fields: Record<string, any>
 
     validating: boolean
-    setFieldValue: (path: Path, value: any) => void
-    getFieldValue: (path: Path) => any
+    setFieldValue: (path: FromPath, value: any) => void
+    getFieldValue: (path: FromPath) => any
     getFieldsValue: () => Record<string, any>
-    setFieldError: (path: Path, error: string) => void
-    getFieldError: (path: Path) => string
+    setFieldError: (path: FromPath, error: string) => void
+    getFieldError: (path: FromPath) => string
     getFieldsError: () => Record<string, string>
-    getFieldTouched: (path: Path) => boolean
+    getFieldTouched: (path: FromPath) => boolean
     validate: () => Promise<boolean>
     submit: () => Promise<boolean | Record<string, any>>
-    setField: (path: Path, field: any) => void
+    setField: (path: FromPath, field: any) => void
 }
 
 interface CreateFormStoreOptions {
@@ -58,7 +58,7 @@ export function createFormStore(options: CreateFormStoreOptions) {
         dirty: false,
         validating: false,
 
-        setFieldValue: (path: Path, value: any) => {
+        setFieldValue: (path: FromPath, value: any) => {
             setState(
                 produce((state) => {
                     if (path.toString() === '') {
@@ -73,7 +73,7 @@ export function createFormStore(options: CreateFormStoreOptions) {
             )
         },
 
-        getFieldValue: (path: Path) => {
+        getFieldValue: (path: FromPath) => {
             return path.getIn(getState().values)
         },
 
@@ -81,7 +81,7 @@ export function createFormStore(options: CreateFormStoreOptions) {
             return getState().values
         },
 
-        setFieldError: (path: Path, error: string) => {
+        setFieldError: (path: FromPath, error: string) => {
             setState(
                 produce((state) => {
                     state.errors[path.toString()] = error
@@ -89,7 +89,7 @@ export function createFormStore(options: CreateFormStoreOptions) {
             )
         },
 
-        getFieldError: (path: Path) => {
+        getFieldError: (path: FromPath) => {
             return getState().errors[path.toString()]
         },
 
@@ -97,7 +97,7 @@ export function createFormStore(options: CreateFormStoreOptions) {
             return getState().errors
         },
 
-        getFieldTouched: (path: Path) => {
+        getFieldTouched: (path: FromPath) => {
             return getState().touched[path.toString()]
         },
 

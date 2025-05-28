@@ -17,6 +17,5 @@ export default antfu({
     ignores: [
         'node_modules',
         'es',
-        'umd',
     ],
 })
